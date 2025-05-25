@@ -1,16 +1,21 @@
 {
   "name": "cat-api",
+  "description": "Cat Facts API",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "test": "vitest run"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "author": "aerrata",
+  "license": "MIT",
   "dependencies": {
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "supertest": "^7.1.1",
+    "vitest": "^3.1.4"
   }
 }

@@ -1,7 +1,6 @@
 import express from 'express'
 
 const app = express()
-const port = 3000
 
 const catFacts = [
   'Cats sleep for 70% of their lives.',
@@ -12,14 +11,8 @@ const catFacts = [
 ]
 
 app.get('/', (req, res) => {
-  res.redirect('/cat-fact')
-})
-
-app.get('/cat-fact', (req, res) => {
   const fact = catFacts[Math.floor(Math.random() * catFacts.length)]
   res.json({ fact })
 })
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`)
-})
+export default app
