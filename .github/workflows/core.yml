@@ -1,0 +1,86 @@
+name: Reusable Core CI/CD Pipeline
+
+on:
+  workflow_call:
+    inputs:
+      directory:
+        required: true
+        type: string
+      lang:
+        required: true
+        type: string
+      image:
+        required: true
+        type: string
+    secrets:
+      AWS_ACCESS_KEY_ID:
+        required: true
+      AWS_SECRET_ACCESS_KEY:
+        required: true
+      AWS_ACCOUNT_ID:
+        required: true
+
+jobs:
+  build-test-push:
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: ap-southeast-5
+      IMAGE_SHA_TAG: ${{ github.sha }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to ECR
+        run: |
+          aws ecr get-login-password --region ap-southeast-5 | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-southeast-5.amazonaws.com
+          
+      - name: Set up Node.js 24
+        if: ${{ inputs.lang == 'node' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Set up Python 3.12
+        if: ${{ inputs.lang == 'python' }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: |
+          cd ${{ inputs.directory }}
+          if [ "${{ inputs.lang }}" == "node" ]; then
+            npm ci
+          else
+            pip install -r requirements.txt
+
+      - name: Run tests
+        run: |
+          cd ${{ inputs.directory }}
+          if [ "${{ inputs.lang }}" == "node" ]; then
+            npm run test
+          else
+            python -m pytest test_app.py
+          fi
+
+      - name: Build and push image to ECR
+        run: |
+          cd ${{ inputs.directory }}
+
+          # IMAGE_LATEST_URI=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ inputs.image }}:latest
+          IMAGE_SHA_URI=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ inputs.image }}:${{ env.IMAGE_SHA_TAG }}
+
+          docker build -t ${{ inputs.image }} .
+
+          # docker tag ${{ inputs.image }}:latest $IMAGE_LATEST_URI
+          docker tag ${{ inputs.image }}:latest $IMAGE_SHA_URI
+
+          # docker push $IMAGE_LATEST_URI
+          docker push $IMAGE_SHA_URI
