@@ -22,13 +22,15 @@ jobs:
     secrets: inherit # this is required to pass the secrets
     with:
       directory: cat-api-node
-      lang: node
       image: cat-api/node
+      lang: node
+      version: 24
 
   python-app:
     uses: ./.github/workflows/core.yml
     secrets: inherit
     with:
       directory: cat-api-py
-      lang: python
       image: cat-api/py
+      lang: python
+      version: 3.12

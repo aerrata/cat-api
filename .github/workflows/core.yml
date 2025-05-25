@@ -6,10 +6,13 @@ on:
       directory:
         required: true
         type: string
+      image:
+        required: true
+        type: string
       lang:
         required: true
         type: string
-      image:
+      version:
         required: true
         type: string
     secrets:
@@ -45,13 +48,13 @@ jobs:
         if: ${{ inputs.lang == 'node' }}
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: ${{ inputs.version }}
 
       - name: Set up Python 3.12
         if: ${{ inputs.lang == 'python' }}
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: ${{ inputs.version }}
 
       - name: Install deps
         run: |
