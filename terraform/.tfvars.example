@@ -1,0 +1,4 @@
+app_name         = "cat-api"
+environment      = "production"
+aws_region       = "ap-southeast-5"
+ecr_repositories = ["cat-api/node", "cat-api/py"]
