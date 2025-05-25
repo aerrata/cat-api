@@ -9,13 +9,13 @@ Simple Express.js app for generating random cat facts.
 2. Build the image
 
 ```bash
-docker build -t cat-api-node .
+docker build -t cat-api/node .
 ```
 
 2. Run the container
 
 ```bash
-docker run -p 3000:3000 --name cat-api-node-container cat-api-node
+docker run -p 3000:3000 --name cat-api-node-container cat-api/node
 ```
 
 3. Go to `http://localhost:3000`
