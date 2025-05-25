@@ -60,6 +60,7 @@ jobs:
             npm ci
           else
             pip install -r requirements.txt
+          fi
 
       - name: Run tests
         run: |

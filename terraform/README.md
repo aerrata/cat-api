@@ -11,7 +11,7 @@ The IAC to provision AWS infra for Cat API app
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "ECR",
+            "Sid": "TerraformApply",
             "Effect": "Allow",
             "Action": [
                 "ecr:CreateRepository",
