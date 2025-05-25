@@ -15,7 +15,7 @@ docker build -t cat-api/node .
 2. Run the container
 
 ```bash
-docker run -p 3000:3000 --name cat-api-node-container cat-api/node
+docker run -d -p 3000:3000 --name cat-api-node-container cat-api/node
 ```
 
 3. Go to `http://localhost:3000`
