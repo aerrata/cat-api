@@ -28,7 +28,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AWS_REGION: ap-southeast-5
-      IMAGE_SHA_TAG: ${{ github.sha }}
 
     steps:
       - uses: actions/checkout@v3
@@ -78,13 +77,15 @@ jobs:
         run: |
           cd ${{ inputs.directory }}
 
-          # IMAGE_LATEST_URI=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ inputs.image }}:latest
-          IMAGE_SHA_URI=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ inputs.image }}:${{ env.IMAGE_SHA_TAG }}
+          SHA_TAG=${{ github.sha }}
+          BRANCH_TAG=${{ github.ref_name }}
+
+          IMAGE_REPO=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ inputs.image }}
 
           docker build -t ${{ inputs.image }} .
 
-          # docker tag ${{ inputs.image }}:latest $IMAGE_LATEST_URI
-          docker tag ${{ inputs.image }}:latest $IMAGE_SHA_URI
+          docker tag ${{ inputs.image }}:latest $IMAGE_REPO:$SHA_TAG
+          docker tag ${{ inputs.image }}:latest $IMAGE_REPO:$BRANCH_TAG
 
-          # docker push $IMAGE_LATEST_URI
-          docker push $IMAGE_SHA_URI
+          docker push $IMAGE_REPO:$SHA_TAG
+          docker push $IMAGE_REPO:$BRANCH_TAG

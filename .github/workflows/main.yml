@@ -1,20 +1,20 @@
 name: Main CI/CD Pipeline
 
 on:
-  # push:
-  #   branches: [main]
-  #   paths:
-  #     - 'cat-api-node/**'
-  #     - 'cat-api-py/**'
-  #     - '.github/workflows/**'
-  
+  push:
+    branches: [develop]
+    paths:
+      - "cat-api-node/**"
+      - "cat-api-py/**"
+      - ".github/workflows/**"
+
   pull_request:
     branches: [main]
     types: [closed]
     paths:
-      - 'cat-api-node/**'
-      - 'cat-api-py/**'
-      - '.github/workflows/**'
+      - "cat-api-node/**"
+      - "cat-api-py/**"
+      - ".github/workflows/**"
 
 jobs:
   node-app:
