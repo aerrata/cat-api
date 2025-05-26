@@ -41,7 +41,7 @@ jobs:
 
       - name: Login to ECR
         run: |
-          aws ecr get-login-password --region ap-southeast-5 | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-southeast-5.amazonaws.com
+          aws ecr get-login-password --region ${{ env.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com
           
       - name: Set up Node.js
         if: ${{ inputs.lang == 'node' }}
@@ -74,18 +74,16 @@ jobs:
           fi
 
       - name: Build, tag and push image to ECR
+        if: github.ref_name == 'main' || github.event.pull_request.base.ref == 'main'
         run: |
           cd ${{ inputs.directory }}
-
-          SHA_TAG=${{ github.sha }}
-          BRANCH_TAG=${{ github.ref_name }}
-
+          
           IMAGE_REPO=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ inputs.image }}
-
+          
           docker build -t ${{ inputs.image }} .
-
-          docker tag ${{ inputs.image }}:latest $IMAGE_REPO:$SHA_TAG
-          docker tag ${{ inputs.image }}:latest $IMAGE_REPO:$BRANCH_TAG
-
-          docker push $IMAGE_REPO:$SHA_TAG
-          docker push $IMAGE_REPO:$BRANCH_TAG
+          
+          docker tag ${{ inputs.image }} $IMAGE_REPO:${{ github.sha }}
+          docker tag ${{ inputs.image }} $IMAGE_REPO:latest
+          
+          docker push $IMAGE_REPO:${{ github.sha }}
+          docker push $IMAGE_REPO:latest
