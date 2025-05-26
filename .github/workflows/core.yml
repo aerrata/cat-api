@@ -73,7 +73,7 @@ jobs:
             python -m pytest test_app.py
           fi
 
-      - name: Build and push image to ECR
+      - name: Build, tag and push image to ECR
         run: |
           cd ${{ inputs.directory }}
 
