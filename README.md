@@ -1,6 +1,6 @@
-# Cat Facts API - DevOps Assignment
+# 🐈 Cat Facts API - DevOps Assignment
 
-## Overview
+## 📌 Overview
 
 This repo demonstrates a DevOps pipeline workflow for multi language microservice apps using Github Actions, Terraform and AWS ECR. It includes:
 
@@ -9,21 +9,20 @@ This repo demonstrates a DevOps pipeline workflow for multi language microservic
 - App containerization
 - Git branching strategy for multiple collaborator
 
-## Project Structure
+## 📂 Project Structure
 
 ```bash
-.
 ├── .github
 │   └── workflows
 │       ├── core.yml  # Reusable pipeline
 │       └── main.yml  # Main pipeline
-├── README.md  # Documentation
-├── cat-api-node  # Node.js app
-├── cat-api-py  # Node.js app
-└── terraform  # Infrastructure provisioning
+├── README.md         # Documentation
+├── cat-api-node      # Node.js app
+├── cat-api-py        # Node.js app
+└── terraform         # Infrastrcture provisioning
 ```
 
-## How to Use?
+## 📕 How to Use?
 
 1. Fork or clone this repo.
 2. Configure your `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_ACCOUNT_ID` secrets in the repository settings.
@@ -31,19 +30,27 @@ This repo demonstrates a DevOps pipeline workflow for multi language microservic
 4. Push new code to a `feature/*` branch, create a PR to `main`, and merge.
 5. The CI/CD pipeline will build, test, and deploy your containers to ECR.
 
-## CI/CD Pipeline
+## 🔄 CI/CD Pipeline
 
-### Github Actions Workflows
+`main.yml`: Main pipeline
 
-1. `main.yml`: Main pipeline
+1. Define triggers
+2. Define jobs, accept input to be used in `core.yml`
 
-blabla
+`core.yml`: Reusable pipeline
 
-2. `core.yml`: Reusable pipeline
+1. Download the code
+2. Set up AWS creds
+3. Login to AWS ECR
+4. Set up the correct language
+5. Install project dependencies
+6. Run tests
+7. Build dokcer image
+    * Build the image
+    * Tag the image with 'latest' tag and commit hash
+    * Push the image to AWS ECR
 
-blabla
-
-## Git Branching Strategy
+## 🔀 Git Branching Strategy
 
 ### Branches
 
@@ -55,12 +62,6 @@ blabla
 
 ### CI/CD Triggers
 
-The pipeline will be triggered if changes were made within this file:
-
-- `cat-api-node/**`
-- `cat-api-py/**`
-- `.github/workflows/**`
-
 1. `main` branch:
 
 - Triggers on PRs are closed
@@ -71,10 +72,15 @@ The pipeline will be triggered if changes were made within this file:
 - Triggers on push events
 - Runs tests but doesn't push images to ECR
 
-## Notes
+> The pipeline will be triggered if changes were made within this file:
+> - `cat-api-node/**`
+> - `cat-api-py/**`
+> - `.github/workflows/**`
+
+## 📝 Notes
 
 - Terraform must be applied first before the pipeline can push to ECR.
 - Apps are assumed to follow standard file structure.
 - Some configuration need to be added to the pipeline for app language other than Nodejs and Python.
-- AWS credentials must be stored in Github Actions secrets in the repo settings.
-- No linter and code security scanning steps yet.
+- AWS creds must be stored in Github Actions secrets in the repo settings.
+- No lint and code security scanning steps yet.
