@@ -43,13 +43,13 @@ jobs:
         run: |
           aws ecr get-login-password --region ap-southeast-5 | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-southeast-5.amazonaws.com
           
-      - name: Set up Node.js 24
+      - name: Set up Node.js
         if: ${{ inputs.lang == 'node' }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ inputs.version }}
 
-      - name: Set up Python 3.12
+      - name: Set up Python
         if: ${{ inputs.lang == 'python' }}
         uses: actions/setup-python@v5
         with:
