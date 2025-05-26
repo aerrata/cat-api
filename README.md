@@ -1,4 +1,4 @@
-# Cat API - DevOps Assignment
+# Cat Facts API - DevOps Assignment
 
 ### Intro
 

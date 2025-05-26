@@ -1,4 +1,4 @@
-# Cat API Python
+# Cat Facts API Python App
 
 Simple FastAPI app for generating random cat facts.
 
