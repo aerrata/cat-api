@@ -1,4 +1,4 @@
-# Cat API Node
+# Cat Facts API Node App
 
 Simple Express.js app for generating random cat facts.
 

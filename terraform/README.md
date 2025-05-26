@@ -1,6 +1,6 @@
-# Cat API Terraform
+# Cat Facts API Terraform
 
-The IAC to provision AWS infra for Cat API app
+The IAC to provision AWS infra for Cat Facts API app
 
 ### Setup
 
