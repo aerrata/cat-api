@@ -4,10 +4,10 @@
 
 This repo contains **Cat Facts** microservice app that generates random cat facts. It also demonstrates a DevOps pipeline workflow for multi language app using **Github Actions**, **Terraform** and **AWS ECR**. It includes:
 
-- Provision ECR repos using Terraform
-- CI/CD pipeline with build, test and push workflows
-- App containerization
-- Git branching strategy for multiple collaborator
+- Provision ECR repos using Terraform.
+- CI/CD pipeline with build, test and push workflows.
+- App containerization.
+- Git branching strategy for multiple collaborator.
 
 ## 📂 Project Structure
 
@@ -64,15 +64,16 @@ This repo contains **Cat Facts** microservice app that generates random cat fact
 
 #### `main` branch
 
-- Triggers on PRs are closed
-- Pushes Docker images to ECR
+- Triggers on closed pull request events
+- Full CI/CD runs, inlcuding pushes Docker images to ECR
 
 #### `develop`, `release/*`, `feature/*`, `hotfix/*` branch
 
 - Triggers on push events
-- Runs tests but doesn't push images to ECR
+- Run tests but does not push images to ECR
 
 > The pipeline will only be triggered if changes were made within this file:
+>
 > - `cat-api-node/**`
 > - `cat-api-py/**`
 > - `.github/workflows/**`
@@ -84,3 +85,4 @@ This repo contains **Cat Facts** microservice app that generates random cat fact
 - Some configuration need to be added to the pipeline for app language other than Nodejs and Python.
 - AWS creds must be stored in Github Actions secrets in the repo settings.
 - No lint and code security scanning steps yet.
+- The Dockerfile uses minimal base image for smaller and more secure build.

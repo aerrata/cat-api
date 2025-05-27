@@ -1,8 +1,8 @@
-# Cat Facts API Node App
+# 🐈 ✨ Cat Facts API Node App
 
 Simple Express.js app for generating random cat facts.
 
-### Setup
+## Setup
 
 1. Make sure you have Docker installed.
 
@@ -20,7 +20,7 @@ docker run -d -p 3000:3000 --name cat-api-node-container cat-api/node
 
 3. Go to `http://localhost:3000`
 
-### Endpoints
+## Endpoints
 
 `GET /` — Returns a random cat fact in JSON format
 

@@ -1,10 +1,12 @@
-# Cat Facts API Terraform
+# 🐈 ✨ Cat Facts API Terraform
 
-The IAC to provision AWS infra for Cat Facts API app
+The IAC to provision AWS infra for Cat Facts API app. 
 
-### Setup
+For this case, we will provision 2 private repo for our app images.
 
-1. Make sure your AWS CLI already configured. You should also set the following IAM policy.
+## Setup
+
+1. Make sure your AWS CLI already installed and configured with `aws configure`. You should also set the following IAM policy.
 
 ```json
 {
@@ -36,10 +38,9 @@ terraform plan -var-file=".production.tfvars" # Shows what changes will be made
 terraform apply -var-file=".production.tfvars" # Apply the changes
 ```
 
-### Output
+## Output
 
 With the default options, this Terraform will configure 2 private ECS repo:
 
-1. `cat-api/node`: for cat-api-node docker image.
-
-2. `cat-api/py`: for cat-api-api docker image.
+1. `cat-api/node`: for cat-api-node docker images.
+2. `cat-api/py`: for cat-api-api docker images.
