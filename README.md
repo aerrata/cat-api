@@ -32,12 +32,12 @@ This repo contains *Cat Facts* microservice app that generates random cat facts.
 
 ## 🔄 CI/CD Pipeline
 
-`main.yml`: Main pipeline
+#### `main.yml`: Main pipeline
 
 1. Define triggers
-2. Define jobs, accepts input to be used in `core.yml`
+2. Define jobs, accepts input to be passed to `core.yml`
 
-`core.yml`: Reusable pipeline
+#### `core.yml`: Reusable pipeline
 
 1. Download the code
 2. Set up AWS creds
@@ -45,9 +45,9 @@ This repo contains *Cat Facts* microservice app that generates random cat facts.
 4. Set up the correct language
 5. Install project dependencies
 6. Run tests
-7. Build dokcer image
+7. Build dokcer image (`main` only)
     * Build the image
-    * Tag the image with 'latest' tag and commit hash
+    * Tag the image with `latest` tag and commit hash
     * Push the image to AWS ECR
 
 ## 🔀 Git Branching Strategy
@@ -62,12 +62,12 @@ This repo contains *Cat Facts* microservice app that generates random cat facts.
 
 ### CI/CD Triggers
 
-1. `main` branch:
+#### `main` branch
 
 - Triggers on PRs are closed
 - Pushes Docker images to ECR
 
-2. `develop`, `release/*`, `feature/*`, `hotfix/*` branch:
+#### `develop`, `release/*`, `feature/*`, `hotfix/*` branch
 
 - Triggers on push events
 - Runs tests but doesn't push images to ECR
