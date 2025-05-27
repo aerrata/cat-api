@@ -1,8 +1,8 @@
-# Cat Facts API Python App
+# 🐈 ✨ Cat Facts API Python App
 
 Simple FastAPI app for generating random cat facts.
 
-### Setup
+## Setup
 
 1. Make sure you have Docker installed.
 
@@ -20,7 +20,7 @@ docker run -d -p 8000:8000 --name cat-api-py-container cat-api/py
 
 3. Go to `http://localhost:8000`
 
-### Endpoints
+## Endpoints
 
 `GET /` — Returns a random cat fact in JSON format
 
