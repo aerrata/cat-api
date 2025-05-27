@@ -1,4 +1,4 @@
-# 🐈 Cat Facts API - DevOps Assignment
+# 🐈 ✨ Cat Facts API - DevOps Assignment
 
 ## 📌 Overview
 
@@ -54,7 +54,7 @@ This repo contains *Cat Facts* microservice app that generates random cat facts.
 
 ### Branches
 
-- `main`: Production code.
+- `main`: Production code. Protected.
 - `develop`: Integration branch.
 - `release/*`: Prep for production. Branched from `develop`, merged into `main`.
 - `feature/*`: New features. Merged into `develop`.
