@@ -2,9 +2,9 @@
 
 ## 📌 Overview
 
-This repo demonstrates a DevOps pipeline workflow for multi language microservice apps using Github Actions, Terraform and AWS ECR. It includes:
+This repo contains *Cat Facts* microservice app that generates random cat facts. It also demonstrates a DevOps pipeline workflow for multi language app using **Github Actions**, **Terraform** and **AWS ECR**. It includes:
 
-- Provision ECR repo using Terraform
+- Provision ECR repos using Terraform
 - CI/CD pipeline with build, test and push workflows
 - App containerization
 - Git branching strategy for multiple collaborator
@@ -35,7 +35,7 @@ This repo demonstrates a DevOps pipeline workflow for multi language microservic
 `main.yml`: Main pipeline
 
 1. Define triggers
-2. Define jobs, accept input to be used in `core.yml`
+2. Define jobs, accepts input to be used in `core.yml`
 
 `core.yml`: Reusable pipeline
 
@@ -72,7 +72,7 @@ This repo demonstrates a DevOps pipeline workflow for multi language microservic
 - Triggers on push events
 - Runs tests but doesn't push images to ECR
 
-> The pipeline will be triggered if changes were made within this file:
+> The pipeline will only be triggered if changes were made within this file:
 > - `cat-api-node/**`
 > - `cat-api-py/**`
 > - `.github/workflows/**`
