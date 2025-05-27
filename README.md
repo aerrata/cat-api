@@ -2,7 +2,7 @@
 
 ## 📌 Overview
 
-This repo contains *Cat Facts* microservice app that generates random cat facts. It also demonstrates a DevOps pipeline workflow for multi language app using **Github Actions**, **Terraform** and **AWS ECR**. It includes:
+This repo contains **Cat Facts** microservice app that generates random cat facts. It also demonstrates a DevOps pipeline workflow for multi language app using **Github Actions**, **Terraform** and **AWS ECR**. It includes:
 
 - Provision ECR repos using Terraform
 - CI/CD pipeline with build, test and push workflows
