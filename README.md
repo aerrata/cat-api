@@ -32,12 +32,12 @@ This repo contains **Cat Facts** microservice app that generates random cat fact
 
 ## 🔄 CI/CD Pipeline
 
-#### `main.yml`: Main pipeline
+### `main.yml`: Main pipeline
 
 1. Define triggers
 2. Define jobs, accepts input to be passed to `core.yml`
 
-#### `core.yml`: Reusable pipeline
+### `core.yml`: Reusable pipeline
 
 1. Download the code
 2. Set up AWS creds
