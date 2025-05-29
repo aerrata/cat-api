@@ -1,4 +1,4 @@
-# 🐈 ✨ Cat Facts API - DevOps Assignment
+# 🐈 Cat Facts API ✨ — DevOps Assessment
 
 ## 📌 Overview
 
