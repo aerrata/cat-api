@@ -32,12 +32,14 @@ This repo contains **Cat Facts** microservice app that generates random cat fact
 
 ## 🔄 CI/CD Pipeline
 
-#### `main.yml`: Main pipeline
+Here we use 2 pipeline files, located at `.github/workflows/`:
+
+#### Main pipeline: `main.yml`
 
 1. Define triggers
 2. Define jobs, accepts input to be passed to `core.yml`
 
-#### `core.yml`: Reusable pipeline
+#### Reusable pipeline: `core.yml`
 
 1. Download the code
 2. Set up AWS creds
@@ -46,28 +48,28 @@ This repo contains **Cat Facts** microservice app that generates random cat fact
 5. Install project dependencies
 6. Run tests
 7. Build dokcer image (`main` only)
-    * Build the image
-    * Tag the image with `latest` tag and commit hash
-    * Push the image to AWS ECR
+   - Build the image
+   - Tag the image with `latest` tag and commit hash
+   - Push the image to AWS ECR
 
 ## 🔀 Git Branching Strategy
 
 ### Branches
 
-- `main`: Production code. Protected.
-- `develop`: Integration branch.
-- `release/*`: Prep for production. Branched from `develop`, merged into `main`.
-- `feature/*`: New features. Merged into `develop`.
-- `hotfix/*`: Critical fixes. Branched from and merged into `main` and `develop`.
+`main`: Production code. Protected.
+`develop`: Integration branch.
+`release/*`: Prep for production. Branched from `develop`, merged into `main`.
+`feature/*`: New features. Merged into `develop`.
+`hotfix/*`: Critical fixes. Branched from and merged into `main` and `develop`.
 
 ### CI/CD Triggers
 
-#### `main` branch
+#### Branch `main`
 
 - Triggers on closed pull request events
 - Full CI/CD runs, inlcuding pushes Docker images to ECR
 
-#### `develop`, `release/*`, `feature/*`, `hotfix/*` branch
+#### Branch `develop`, `release/*`, `feature/*`, `hotfix/*`
 
 - Triggers on push events
 - Run tests but does not push images to ECR

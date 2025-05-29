@@ -15,6 +15,12 @@ on:
       version:
         required: true
         type: string
+      command_install:
+        required: true
+        type: string
+      command_test:
+        required: true
+        type: string
     secrets:
       AWS_ACCESS_KEY_ID:
         required: true
@@ -59,20 +65,18 @@ jobs:
       - name: Install deps
         run: |
           cd ${{ inputs.directory }}
-          if [ "${{ inputs.lang }}" == "node" ]; then
-            npm ci
-          else
-            pip install -r requirements.txt
-          fi
+          ${{ inputs.command_install }}
+
+          # if [ "${{ inputs.lang }}" == "node" ]; then
+          #   npm ci
+          # else
+          #   pip install -r requirements.txt
+          # fi
 
       - name: Run tests
         run: |
           cd ${{ inputs.directory }}
-          if [ "${{ inputs.lang }}" == "node" ]; then
-            npm run test
-          else
-            python -m pytest test_app.py
-          fi
+          ${{ inputs.command_test }}
 
       - name: Build, tag and push image to ECR
         if: github.ref_name == 'main' || github.event.pull_request.base.ref == 'main'
