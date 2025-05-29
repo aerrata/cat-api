@@ -30,6 +30,8 @@ jobs:
       image: cat-api/node
       lang: node
       version: 24
+      command_install: npm ci
+      command_test: npm run test
 
   python-app:
     uses: ./.github/workflows/core.yml
@@ -39,3 +41,5 @@ jobs:
       image: cat-api/py
       lang: python
       version: 3.12
+      command_install: pip install -r requirements.txt
+      command_test: python -m pytest test_app.py
