@@ -56,11 +56,11 @@ Here we use 2 pipeline files, located at `.github/workflows/`:
 
 ### Branches
 
-`main`: Production code. Protected.
-`develop`: Integration branch.
-`release/*`: Prep for production. Branched from `develop`, merged into `main`.
-`feature/*`: New features. Merged into `develop`.
-`hotfix/*`: Critical fixes. Branched from and merged into `main` and `develop`.
+- `main`: Production code. Protected.
+- `develop`: Integration branch.
+- `release/*`: Prep for production. Branched from `develop`, merged into `main`.
+- `feature/*`: New features. Merged into `develop`.
+- `hotfix/*`: Critical fixes. Branched from and merged into `main` and `develop`.
 
 ### CI/CD Triggers
 
