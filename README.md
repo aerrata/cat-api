@@ -1,4 +1,6 @@
-# 🐈 Cat Facts API ✨ — DevOps Assessment
+> This repo is not AI-generated. I just like using emojis 🥲
+
+# 🐈 Cat Facts API ✨ — DevOps Practice
 
 ## 📌 Overview
 
